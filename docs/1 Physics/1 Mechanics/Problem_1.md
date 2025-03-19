@@ -110,7 +110,59 @@ plt.show()
 ```
 ![alt text](image-9.png)
 
+```python 
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(111, projection='3d')
+
+for theta in [30, 45, 60]:
+    t = np.linspace(0, 2*v0*np.sin(np.radians(theta))/g, 100)
+    x = v0 * np.cos(np.radians(theta)) * t
+    y = v0 * np.sin(np.radians(theta)) * t - 0.5 * g * t**2
+    ax.plot(x, t, y, label=f'θ = {theta}°')
+
+ax.set_xlabel('Horizontal Distance')
+ax.set_ylabel('Time')
+ax.set_zlabel('Vertical Height')
+ax.legend()
+plt.show()
+
+```
+
 ![alt text](image-10.png)
+
+```python
+def projectile_with_drag(v0, theta, g=9.81, Cd=0.47, rho=1.225, A=0.01, m=0.1, dt=0.01):
+    vx = v0 * np.cos(np.radians(theta))
+    vy = v0 * np.sin(np.radians(theta))
+    x, y = 0, 0
+    positions = []
+
+    while y >= 0:
+        v = np.sqrt(vx**2 + vy**2)
+        Fd = 0.5 * Cd * rho * A * v**2
+        ax = -Fd * vx / m
+        ay = -g - (Fd * vy / m)
+
+        vx += ax * dt
+        vy += ay * dt
+        x += vx * dt
+        y += vy * dt
+        positions.append((x, y))
+
+    return np.array(positions)
+
+pos = projectile_with_drag(20, 45)
+plt.plot(pos[:, 0], pos[:, 1], label='With Air Resistance')
+plt.xlabel('Horizontal Distance')
+plt.ylabel('Vertical Height')
+plt.title('Projectile Motion with Air Resistance')
+plt.legend()
+plt.grid()
+plt.show()
+
+```
 
 ![alt text](image-11.png)
 
