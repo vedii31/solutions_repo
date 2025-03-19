@@ -38,21 +38,21 @@ $$
 where:  
 - \( g \) is the acceleration due to gravity (9.81 m/s² on Earth).  
 
-### **2.2 Time of Flight**  
+2.2 Time of Flight  
 The projectile reaches the ground when \( y = 0 \):  
-$$
- t_f = \frac{2 v_0 \sin(\theta)}{g}
-$$
+$$[
+t_f = \frac{2 v_0 \sin(\theta)}{g}
+$$]
 
-### **2.3 Range Equation**  
+2.3 Range Equation  
 The horizontal distance (range) at landing is:  
-$$
- R = v_0 \cos(\theta) t_f = \frac{v_0^2 \sin(2\theta)}{g}
-$$
-
-From this equation, we note:  
-- **Max range occurs at \( \theta = 45^\circ \)**.  
-- **Range is symmetric**: \( 30^\circ \) and \( 60^\circ \) give the same range.  
+$$[
+R = v_0 \cos(\theta) t_f = \frac{v_0^2 \sin(2\theta)}{g}
+$$]
+From this equation, we note:
+- Max range occurs at \( \theta = 45^\circ \).
+- Range is symmetric: \( 30^\circ \) and \( 60^\circ \) give the same range.
+  
 
 ---
 
