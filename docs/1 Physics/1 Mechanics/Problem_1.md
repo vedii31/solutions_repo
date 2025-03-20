@@ -41,7 +41,7 @@ $$
 $$
 
 where:  
-- $g $ is the acceleration due to gravity (9.81 m/s² on Earth).  
+- $g$ is the acceleration due to gravity (9.81 m/s² on Earth).  
 
 2.2 Time of Flight  
 The projectile reaches the ground when $y = 0$:  
@@ -85,7 +85,7 @@ Thus, **the maximum range is at $45^\circ$**.
 
 ### **3.2 Effect of Air Resistance**  
 
-With air resistance ($ F_d = \frac{1}{2} C_d \rho A v^2 $), the equations become:  
+With air resistance $F_d = \frac{1}{2} C_d \rho A v^2$, the equations become:  
 
 $$
  m \frac{dv_x}{dt} = -F_d \cos(\theta)
