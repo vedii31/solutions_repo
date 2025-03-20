@@ -176,53 +176,55 @@
 <h4 id="horizontal-motion"><strong>Horizontal Motion</strong></h4>
 <div class="arithmatex">\[
  x = v_0 \cos(\theta) t
-$$
-$$
+\]</div>
+<div class="arithmatex">\[
  v_x = v_0 \cos(\theta)  \quad (\text{constant})
 \]</div>
 <h4 id="vertical-motion"><strong>Vertical Motion</strong></h4>
 <div class="arithmatex">\[
  y = v_0 \sin(\theta) t - \frac{1}{2} g t^2
-$$
-$$
+\]</div>
+<div class="arithmatex">\[
  v_y = v_0 \sin(\theta) - g t
 \]</div>
 <p>where:<br/>
 - $( g $) is the acceleration due to gravity (9.81 m/s² on Earth).  </p>
 <p>2.2 Time of Flight<br/>
-The projectile reaches the ground when $( y = 0 $):<br/>
-$$
+The projectile reaches the ground when $( y = 0 $):  </p>
+<div class="arithmatex">\[
 t_f = \frac{2 v_0 \sin(\theta)}{g}
-$$</p>
+\]</div>
 <p>2.3 Range Equation<br/>
-The horizontal distance (range) at landing is:<br/>
-$$
+The horizontal distance (range) at landing is:  </p>
+<div class="arithmatex">\[
 R = v_0 \cos(\theta) t_f = \frac{v_0^2 \sin(2\theta)}{g}
-$$
-From this equation, we note:
-- Max range occurs at $( \theta = 45^\circ $).
-- Range is symmetric: $( 30^\circ $) and $( 60^\circ $) give the same range.</p>
+\]</div>
+<p>From this equation, we note:</p>
+<ul>
+<li>Max range occurs at $( \theta = 45^\circ $).</li>
+<li>Range is symmetric: $( 30^\circ $) and $( 60^\circ $) give the same range.</li>
+</ul>
 <hr/>
 <h2 id="3-advanced-theoretical-considerations"><strong>3. Advanced Theoretical Considerations</strong></h2>
 <h3 id="31-finding-the-maximum-range"><strong>3.1 Finding the Maximum Range</strong></h3>
-<p>Taking the derivative of $( R(\theta) $) and setting it to zero:<br/>
-$$
+<p>Taking the derivative of $( R(\theta) $) and setting it to zero:  </p>
+<div class="arithmatex">\[
  \frac{dR}{d\theta} = \frac{2 v_0^2 \cos(2\theta)}{g} = 0
-$$
-Solving for $( \theta $):<br/>
-$$
+\]</div>
+<p>Solving for $( \theta $):  </p>
+<div class="arithmatex">\[
  2\theta = 90^\circ \Rightarrow \theta = 45^\circ
-$$
-Thus, <strong>the maximum range is at $( 45^\circ $)</strong>.</p>
+\]</div>
+<p>Thus, <strong>the maximum range is at $( 45^\circ $)</strong>.</p>
 <h3 id="32-effect-of-air-resistance"><strong>3.2 Effect of Air Resistance</strong></h3>
-<p>With air resistance ($ F_d = \frac{1}{2} C_d \rho A v^2 $), the equations become:<br/>
-$$
+<p>With air resistance ($ F_d = \frac{1}{2} C_d \rho A v^2 $), the equations become:  </p>
+<div class="arithmatex">\[
  m \frac{dv_x}{dt} = -F_d \cos(\theta)
-$$
-$$
+\]</div>
+<div class="arithmatex">\[
  m \frac{dv_y}{dt} = -mg - F_d \sin(\theta)
-$$
-These equations require numerical methods for solutions.</p>
+\]</div>
+<p>These equations require numerical methods for solutions.</p>
 <hr/>
 <h2 id="4-python-implementation"><strong>4. Python Implementation</strong></h2>
 <h3 id="41-range-vs-angle-basic-model"><strong>4.1 Range vs. Angle (Basic Model)</strong></h3>
