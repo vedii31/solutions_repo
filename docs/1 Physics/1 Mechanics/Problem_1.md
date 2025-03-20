@@ -20,17 +20,21 @@ This report explores how the **range** of a projectile depends on its angle of p
 Projectile motion follows **Newton’s Laws**, particularly the equations of motion under uniform acceleration. Given an initial velocity $( v_0 $) and launch angle $( \theta $), we break the motion into:  
 
 #### **Horizontal Motion**  
+
 $$
  x = v_0 \cos(\theta) t
 $$
+
 $$
  v_x = v_0 \cos(\theta)  \quad (\text{constant})
 $$
 
 #### **Vertical Motion**  
+
 $$
  y = v_0 \sin(\theta) t - \frac{1}{2} g t^2
 $$
+
 $$
  v_y = v_0 \sin(\theta) - g t
 $$
@@ -40,16 +44,20 @@ where:
 
 2.2 Time of Flight  
 The projectile reaches the ground when $( y = 0 $):  
+
 $$
 t_f = \frac{2 v_0 \sin(\theta)}{g}
 $$
 
 2.3 Range Equation  
 The horizontal distance (range) at landing is:  
+
 $$
 R = v_0 \cos(\theta) t_f = \frac{v_0^2 \sin(2\theta)}{g}
 $$
+
 From this equation, we note:
+
 - Max range occurs at $( \theta = 45^\circ $).
 - Range is symmetric: $( 30^\circ $) and $( 60^\circ $) give the same range.
   
@@ -59,24 +67,33 @@ From this equation, we note:
 ## **3. Advanced Theoretical Considerations**  
 
 ### **3.1 Finding the Maximum Range**  
+
 Taking the derivative of $( R(\theta) $) and setting it to zero:  
+
 $$
  \frac{dR}{d\theta} = \frac{2 v_0^2 \cos(2\theta)}{g} = 0
 $$
+
 Solving for $( \theta $):  
+
 $$
  2\theta = 90^\circ \Rightarrow \theta = 45^\circ
 $$
+
 Thus, **the maximum range is at $( 45^\circ $)**.
 
 ### **3.2 Effect of Air Resistance**  
+
 With air resistance ($ F_d = \frac{1}{2} C_d \rho A v^2 $), the equations become:  
+
 $$
  m \frac{dv_x}{dt} = -F_d \cos(\theta)
 $$
+
 $$
  m \frac{dv_y}{dt} = -mg - F_d \sin(\theta)
 $$
+
 These equations require numerical methods for solutions.
 
 ---
