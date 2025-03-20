@@ -7,6 +7,7 @@ Projectile motion is a classical problem in physics, demonstrating fundamental p
 This report explores how the **range** of a projectile depends on its angle of projection. By analyzing these dependencies, we uncover important insights into real-world problems, from optimizing a soccer kick to launching spacecrafts.  
 
 ### **Key Questions Explored:**  
+
 - How does the range of a projectile change with launch angle?  
 - What is the optimal launch angle for maximum range?  
 - How do environmental factors (air resistance, wind, gravity variations) impact projectile motion?  
@@ -17,7 +18,7 @@ This report explores how the **range** of a projectile depends on its angle of p
 
 ### **2.1 Governing Equations of Motion**  
 
-Projectile motion follows **Newton’s Laws**, particularly the equations of motion under uniform acceleration. Given an initial velocity $( v_0 $) and launch angle $( \theta $), we break the motion into:  
+Projectile motion follows **Newton’s Laws**, particularly the equations of motion under uniform acceleration. Given an initial velocity $v_0$ and launch angle $\theta$, we break the motion into:  
 
 #### **Horizontal Motion**  
 
