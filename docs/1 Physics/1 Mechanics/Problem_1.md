@@ -41,10 +41,10 @@ $$
 $$
 
 where:  
-- $( g $) is the acceleration due to gravity (9.81 m/s² on Earth).  
+- $g $ is the acceleration due to gravity (9.81 m/s² on Earth).  
 
 2.2 Time of Flight  
-The projectile reaches the ground when $( y = 0 $):  
+The projectile reaches the ground when $y = 0$:  
 
 $$
 t_f = \frac{2 v_0 \sin(\theta)}{g}
@@ -59,8 +59,8 @@ $$
 
 From this equation, we note:
 
-- Max range occurs at $( \theta = 45^\circ $).
-- Range is symmetric: $( 30^\circ $) and $( 60^\circ $) give the same range.
+- Max range occurs at $\theta = 45^\circ$.
+- Range is symmetric: $30^\circ$ and $60^\circ$ give the same range.
   
 
 ---
@@ -69,19 +69,19 @@ From this equation, we note:
 
 ### **3.1 Finding the Maximum Range**  
 
-Taking the derivative of $( R(\theta) $) and setting it to zero:  
+Taking the derivative of $R(\theta)$ and setting it to zero:  
 
 $$
  \frac{dR}{d\theta} = \frac{2 v_0^2 \cos(2\theta)}{g} = 0
 $$
 
-Solving for $( \theta $):  
+Solving for $\theta$:  
 
 $$
  2\theta = 90^\circ \Rightarrow \theta = 45^\circ
 $$
 
-Thus, **the maximum range is at $( 45^\circ $)**.
+Thus, **the maximum range is at $45^\circ$**.
 
 ### **3.2 Effect of Air Resistance**  
 
