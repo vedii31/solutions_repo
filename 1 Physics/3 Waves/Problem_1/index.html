@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>🌊 Interference Patterns on a Water Surface - Physics and Mathematics</title>
+<title>Interference Patterns on a Water Surface - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "\ud83c\udf0a Interference Patterns on a Water Surface";
+        var mkdocs_page_name = "Interference Patterns on a Water Surface";
         var mkdocs_page_input_path = "1 Physics/3 Waves/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -64,11 +64,11 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">3 Waves</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">🌊 Interference Patterns on a Water Surface</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Interference Patterns on a Water Surface</a>
 <ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="#motivation">🎯 Motivation</a>
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#theoretical-background">🧮 Theoretical Background</a>
+<li class="toctree-l3"><a class="reference internal" href="#theoretical-background">Theoretical Background</a>
 <ul>
 <li class="toctree-l4"><a class="reference internal" href="#single-point-source-wave">Single Point Source Wave</a>
 </li>
@@ -76,7 +76,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#simulation-setup">🔧 Simulation Setup</a>
+<li class="toctree-l3"><a class="reference internal" href="#simulation-setup">Simulation Setup</a>
 <ul>
 <li class="toctree-l4"><a class="reference internal" href="#1-define-parameters">1. Define Parameters</a>
 </li>
@@ -88,23 +88,23 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#python-code">🧪 Python Code</a>
+<li class="toctree-l3"><a class="reference internal" href="#python-code">Python Code</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#_1"></a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#observations-and-analysis">📊 Observations and Analysis</a>
+<li class="toctree-l3"><a class="reference internal" href="#observations-and-analysis">Observations and Analysis</a>
 <ul>
-<li class="toctree-l4"><a class="reference internal" href="#constructive-interference">🔹 Constructive Interference</a>
+<li class="toctree-l4"><a class="reference internal" href="#constructive-interference">Constructive Interference</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#destructive-interference">🔸 Destructive Interference</a>
+<li class="toctree-l4"><a class="reference internal" href="#destructive-interference">Destructive Interference</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#symmetry-and-patterns">🌀 Symmetry and Patterns</a>
+<li class="toctree-l4"><a class="reference internal" href="#symmetry-and-patterns">Symmetry and Patterns</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#possible-extensions">🔁 Possible Extensions</a>
+<li class="toctree-l3"><a class="reference internal" href="#possible-extensions">Possible Extensions</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#conclusion">✅ Conclusion</a>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a>
 </li>
 </ul>
 </li>
@@ -151,7 +151,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">3 Waves</li>
-<li class="breadcrumb-item active">🌊 Interference Patterns on a Water Surface</li>
+<li class="breadcrumb-item active">Interference Patterns on a Water Surface</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -159,12 +159,12 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="interference-patterns-on-a-water-surface">🌊 Interference Patterns on a Water Surface</h1>
-<h2 id="motivation">🎯 Motivation</h2>
+<h1 id="interference-patterns-on-a-water-surface">Interference Patterns on a Water Surface</h1>
+<h2 id="motivation">Motivation</h2>
 <p>Wave interference is a fundamental phenomenon where two or more waves overlap in space, leading to a new wave pattern. On a water surface, this is elegantly demonstrated when ripples from different points meet. Their superposition produces a pattern of reinforcement (constructive interference) and cancellation (destructive interference). These patterns not only provide visual insight into the physics of waves but also model various real-world phenomena including sound, light, and radio wave interactions.</p>
 <p>This project aims to visualize interference using wave sources placed at the vertices of a regular polygon. The symmetry and spacing of these sources produce rich interference patterns.</p>
 <hr/>
-<h2 id="theoretical-background">🧮 Theoretical Background</h2>
+<h2 id="theoretical-background">Theoretical Background</h2>
 <h3 id="single-point-source-wave">Single Point Source Wave</h3>
 <p>The displacement <span class="arithmatex">\((\eta(x, y, t)\)</span>) on the surface of the water from a point source at position <span class="arithmatex">\(((x_0, y_0)\)</span>) is modeled by:</p>
 <div class="arithmatex">\[
@@ -186,7 +186,7 @@
 \]</div>
 <p>Where <span class="arithmatex">\((N\)</span>) is the number of wave sources.</p>
 <hr/>
-<h2 id="simulation-setup">🔧 Simulation Setup</h2>
+<h2 id="simulation-setup">Simulation Setup</h2>
 <h3 id="1-define-parameters">1. Define Parameters</h3>
 <ul>
 <li>Number of sources <span class="arithmatex">\((N\)</span>): Vertices of the polygon</li>
@@ -207,7 +207,7 @@
 <li>Use contour plots to show high and low displacement regions</li>
 </ul>
 <hr/>
-<h2 id="python-code">🧪 Python Code</h2>
+<h2 id="python-code">Python Code</h2>
 <pre><code class="language-python">import numpy as np
 import matplotlib.pyplot as plt
 
@@ -256,24 +256,24 @@ plt.grid(False)
 plt.show()
 </code></pre>
 <h2 id="_1"><img alt="alt text" src="../image-1.png"/></h2>
-<h2 id="observations-and-analysis">📊 Observations and Analysis</h2>
-<h3 id="constructive-interference">🔹 Constructive Interference</h3>
+<h2 id="observations-and-analysis">Observations and Analysis</h2>
+<h3 id="constructive-interference">Constructive Interference</h3>
 <ul>
 <li>Occurs at points where waves from all sources arrive <strong>in phase</strong>.</li>
 <li>Results in <strong>amplified displacement</strong>.</li>
 </ul>
-<h3 id="destructive-interference">🔸 Destructive Interference</h3>
+<h3 id="destructive-interference">Destructive Interference</h3>
 <ul>
 <li>Occurs at points where waves arrive <strong>out of phase</strong>.</li>
 <li>Results in <strong>cancellation</strong> or reduced displacement.</li>
 </ul>
-<h3 id="symmetry-and-patterns">🌀 Symmetry and Patterns</h3>
+<h3 id="symmetry-and-patterns">Symmetry and Patterns</h3>
 <ul>
 <li>The <strong>rotational symmetry</strong> of the polygon is reflected in the interference pattern.</li>
 <li>As <span class="arithmatex">\((N\)</span>) increases, the pattern becomes more circular and complex.</li>
 </ul>
 <hr/>
-<h2 id="possible-extensions">🔁 Possible Extensions</h2>
+<h2 id="possible-extensions">Possible Extensions</h2>
 <ul>
 <li><strong>Animation over time</strong> to show wave propagation</li>
 <li><strong>Different phase shifts</strong> between sources</li>
@@ -281,7 +281,7 @@ plt.show()
 <li><strong>Interactive UI</strong> using sliders for real-time parameter adjustment (with Jupyter widgets or Streamlit)</li>
 </ul>
 <hr/>
-<h2 id="conclusion">✅ Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 <p>This simulation visually demonstrates how regular spatial arrangements of coherent wave sources lead to predictable and beautiful interference patterns. The combination of theory and Python simulation provides a hands-on approach to mastering wave behavior and superposition.</p>
 <hr/>
 </div>
