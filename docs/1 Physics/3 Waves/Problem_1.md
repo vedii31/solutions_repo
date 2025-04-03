@@ -1,6 +1,6 @@
-# 🌊 Interference Patterns on a Water Surface
+#  Interference Patterns on a Water Surface
 
-## 🎯 Motivation
+##  Motivation
 
 Wave interference is a fundamental phenomenon where two or more waves overlap in space, leading to a new wave pattern. On a water surface, this is elegantly demonstrated when ripples from different points meet. Their superposition produces a pattern of reinforcement (constructive interference) and cancellation (destructive interference). These patterns not only provide visual insight into the physics of waves but also model various real-world phenomena including sound, light, and radio wave interactions.
 
@@ -8,7 +8,7 @@ This project aims to visualize interference using wave sources placed at the ver
 
 ---
 
-## 🧮 Theoretical Background
+##  Theoretical Background
 
 ### Single Point Source Wave
 
@@ -40,7 +40,7 @@ Where $(N$) is the number of wave sources.
 
 ---
 
-## 🔧 Simulation Setup
+##  Simulation Setup
 
 ### 1. Define Parameters
 - Number of sources $(N$): Vertices of the polygon
@@ -59,7 +59,7 @@ Where $(N$) is the number of wave sources.
 
 ---
 
-## 🧪 Python Code
+##  Python Code
 
 ```python
 import numpy as np
@@ -112,23 +112,23 @@ plt.show()
 ![alt text](image-1.png)
 ---
 
-## 📊 Observations and Analysis
+##  Observations and Analysis
 
-### 🔹 Constructive Interference
+###  Constructive Interference
 - Occurs at points where waves from all sources arrive **in phase**.
 - Results in **amplified displacement**.
 
-### 🔸 Destructive Interference
+###  Destructive Interference
 - Occurs at points where waves arrive **out of phase**.
 - Results in **cancellation** or reduced displacement.
 
-### 🌀 Symmetry and Patterns
+###  Symmetry and Patterns
 - The **rotational symmetry** of the polygon is reflected in the interference pattern.
 - As $(N$) increases, the pattern becomes more circular and complex.
 
 ---
 
-## 🔁 Possible Extensions
+##  Possible Extensions
 
 - **Animation over time** to show wave propagation
 - **Different phase shifts** between sources
@@ -137,7 +137,7 @@ plt.show()
 
 ---
 
-## ✅ Conclusion
+##  Conclusion
 
 This simulation visually demonstrates how regular spatial arrangements of coherent wave sources lead to predictable and beautiful interference patterns. The combination of theory and Python simulation provides a hands-on approach to mastering wave behavior and superposition.
 
