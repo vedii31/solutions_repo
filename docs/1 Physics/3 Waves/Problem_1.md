@@ -12,21 +12,21 @@ This project aims to visualize interference using wave sources placed at the ver
 
 ### Single Point Source Wave
 
-The displacement $( \eta(x, y, t) $) on the surface of the water from a point source at position $((x_0, y_0)$) is modeled by:
+The displacement $(\eta(x, y, t)$) on the surface of the water from a point source at position $((x_0, y_0)$) is modeled by:
 
 $$
 \eta(x, y, t) = \frac{A}{\sqrt{r}} \cos(kr - \omega t + \phi)
 $$
 
 Where:
-- $( A $): Amplitude of the wave
-- $( r = \sqrt{(x - x_0)^2 + (y - y_0)^2} $): Distance from source to point $((x, y)$)
-- $( k = \frac{2\pi}{\lambda} $): Wave number
-- $( \lambda $): Wavelength
-- $( \omega = 2\pi f $): Angular frequency
-- $( f $): Frequency
-- $( \phi $): Initial phase
-- $( t $): Time
+- $(A$): Amplitude of the wave
+- $(r = \sqrt{(x - x_0)^2 + (y - y_0)^2}$): Distance from source to point $((x, y)$)
+- $(k = \frac{2\pi}{\lambda}$): Wave number
+- $(\lambda$): Wavelength
+- $(\omega = 2\pi f$): Angular frequency
+- $(f$): Frequency
+- $(\phi$): Initial phase
+- $(t$): Time
 
 ### Superposition Principle
 
@@ -36,23 +36,23 @@ $$
 \eta_{sum}(x, y, t) = \sum_{i=1}^{N} \eta_i(x, y, t)
 $$
 
-Where $( N $) is the number of wave sources.
+Where $(N$) is the number of wave sources.
 
 ---
 
 ## 🔧 Simulation Setup
 
 ### 1. Define Parameters
-- Number of sources $( N $): Vertices of the polygon
-- Radius $( R $): Distance from polygon center to each source
-- Grid size: Area of simulation in the $( xy $)-plane
+- Number of sources $(N$): Vertices of the polygon
+- Radius $(R$): Distance from polygon center to each source
+- Grid size: Area of simulation in the $(xy$)-plane
 
 ### 2. Create Wave Sources
 - Sources are placed symmetrically around the origin using trigonometric functions.
 
 ### 3. Calculate Wave Contributions
-- Use the distance formula for $( r $)
-- Sum all contributions to get $( \eta_{sum} $)
+- Use the distance formula for $(r$)
+- Sum all contributions to get $(\eta_{sum}$)
 
 ### 4. Visualization
 - Use contour plots to show high and low displacement regions
@@ -124,7 +124,7 @@ plt.show()
 
 ### 🌀 Symmetry and Patterns
 - The **rotational symmetry** of the polygon is reflected in the interference pattern.
-- As $( N $) increases, the pattern becomes more circular and complex.
+- As $(N$) increases, the pattern becomes more circular and complex.
 
 ---
 
