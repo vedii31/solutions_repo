@@ -166,32 +166,32 @@
 <hr/>
 <h2 id="theoretical-background">🧮 Theoretical Background</h2>
 <h3 id="single-point-source-wave">Single Point Source Wave</h3>
-<p>The displacement $( \eta(x, y, t) $) on the surface of the water from a point source at position <span class="arithmatex">\(((x_0, y_0)\)</span>) is modeled by:</p>
+<p>The displacement <span class="arithmatex">\((\eta(x, y, t)\)</span>) on the surface of the water from a point source at position <span class="arithmatex">\(((x_0, y_0)\)</span>) is modeled by:</p>
 <div class="arithmatex">\[
 \eta(x, y, t) = \frac{A}{\sqrt{r}} \cos(kr - \omega t + \phi)
 \]</div>
 <p>Where:
-- $( A $): Amplitude of the wave
-- $( r = \sqrt{(x - x_0)^2 + (y - y_0)^2} $): Distance from source to point <span class="arithmatex">\(((x, y)\)</span>)
-- $( k = \frac{2\pi}{\lambda} $): Wave number
-- $( \lambda $): Wavelength
-- $( \omega = 2\pi f $): Angular frequency
-- $( f $): Frequency
-- $( \phi $): Initial phase
-- $( t $): Time</p>
+- <span class="arithmatex">\((A\)</span>): Amplitude of the wave
+- <span class="arithmatex">\((r = \sqrt{(x - x_0)^2 + (y - y_0)^2}\)</span>): Distance from source to point <span class="arithmatex">\(((x, y)\)</span>)
+- <span class="arithmatex">\((k = \frac{2\pi}{\lambda}\)</span>): Wave number
+- <span class="arithmatex">\((\lambda\)</span>): Wavelength
+- <span class="arithmatex">\((\omega = 2\pi f\)</span>): Angular frequency
+- <span class="arithmatex">\((f\)</span>): Frequency
+- <span class="arithmatex">\((\phi\)</span>): Initial phase
+- <span class="arithmatex">\((t\)</span>): Time</p>
 <h3 id="superposition-principle">Superposition Principle</h3>
 <p>With multiple coherent sources emitting waves of equal frequency and amplitude, the net displacement is the sum of all individual displacements:</p>
 <div class="arithmatex">\[
 \eta_{sum}(x, y, t) = \sum_{i=1}^{N} \eta_i(x, y, t)
 \]</div>
-<p>Where $( N $) is the number of wave sources.</p>
+<p>Where <span class="arithmatex">\((N\)</span>) is the number of wave sources.</p>
 <hr/>
 <h2 id="simulation-setup">🔧 Simulation Setup</h2>
 <h3 id="1-define-parameters">1. Define Parameters</h3>
 <ul>
-<li>Number of sources $( N $): Vertices of the polygon</li>
-<li>Radius $( R $): Distance from polygon center to each source</li>
-<li>Grid size: Area of simulation in the $( xy $)-plane</li>
+<li>Number of sources <span class="arithmatex">\((N\)</span>): Vertices of the polygon</li>
+<li>Radius <span class="arithmatex">\((R\)</span>): Distance from polygon center to each source</li>
+<li>Grid size: Area of simulation in the <span class="arithmatex">\((xy\)</span>)-plane</li>
 </ul>
 <h3 id="2-create-wave-sources">2. Create Wave Sources</h3>
 <ul>
@@ -199,8 +199,8 @@
 </ul>
 <h3 id="3-calculate-wave-contributions">3. Calculate Wave Contributions</h3>
 <ul>
-<li>Use the distance formula for $( r $)</li>
-<li>Sum all contributions to get $( \eta_{sum} $)</li>
+<li>Use the distance formula for <span class="arithmatex">\((r\)</span>)</li>
+<li>Sum all contributions to get <span class="arithmatex">\((\eta_{sum}\)</span>)</li>
 </ul>
 <h3 id="4-visualization">4. Visualization</h3>
 <ul>
@@ -270,7 +270,7 @@ plt.show()
 <h3 id="symmetry-and-patterns">🌀 Symmetry and Patterns</h3>
 <ul>
 <li>The <strong>rotational symmetry</strong> of the polygon is reflected in the interference pattern.</li>
-<li>As $( N $) increases, the pattern becomes more circular and complex.</li>
+<li>As <span class="arithmatex">\((N\)</span>) increases, the pattern becomes more circular and complex.</li>
 </ul>
 <hr/>
 <h2 id="possible-extensions">🔁 Possible Extensions</h2>
