@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Equivalent Resistance Using Graph Theory - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Equivalent Resistance Using Graph Theory";
         var mkdocs_page_input_path = "1 Physics/5 Circuits/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -76,8 +76,22 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">5 Circuits</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Equivalent Resistance Using Graph Theory</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-motivation">1. Motivation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-algorithm-overview">2. Algorithm Overview</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-pseudocode">3. Pseudocode</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-python-implementation">4. Python Implementation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-example-circuit">5. Example Circuit</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#6-efficiency-improvements">6. Efficiency &amp; Improvements</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#7-extensions">7. Extensions</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -111,7 +125,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">5 Circuits</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Equivalent Resistance Using Graph Theory</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,7 +133,100 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="equivalent-resistance-using-graph-theory">Equivalent Resistance Using Graph Theory</h1>
+<h2 id="1-motivation">1. Motivation</h2>
+<p>Calculating equivalent resistance is essential in understanding electrical networks. Traditional methods using series-parallel simplifications become tedious for complex circuits. <strong>Graph theory</strong> offers a powerful algorithmic alternative by modeling circuits as weighted graphs:
+- <strong>Nodes</strong> represent junctions.
+- <strong>Edges</strong> represent resistors with weights equal to resistance values.</p>
+<p>This enables programmatic simplification and analysis of even complex resistor networks.</p>
+<hr/>
+<h2 id="2-algorithm-overview">2. Algorithm Overview</h2>
+<p>We simplify the circuit using two rules:
+1. <strong>Series combination</strong>: If a node has exactly two neighbors, the resistors can be merged.
+2. <strong>Parallel combination</strong>: If multiple edges exist between two nodes, combine them via:
+$$
+\frac{1}{R_{\text{eq}}} = \sum_i \frac{1}{R_i}
+$$</p>
+<p>The process is repeated until a single edge (equivalent resistance) remains between the source and target.</p>
+<hr/>
+<h2 id="3-pseudocode">3. Pseudocode</h2>
+<pre><code>function simplify_graph(graph, source, target):
+    repeat:
+        for each node N in graph:
+            if N is not source or target and degree(N) == 2:
+                merge series resistors at N
+        for each pair of nodes (A, B) with multiple edges:
+            merge them in parallel
+    until no further simplifications
+    return weight of edge between source and target
+</code></pre>
+<hr/>
+<h2 id="4-python-implementation">4. Python Implementation</h2>
+<pre><code class="language-python">import networkx as nx
+
+def parallel_merge(G, u, v):
+    resistances = [1 / G[u][v][key]['resistance'] for key in G[u][v]]
+    R_eq = 1 / sum(resistances)
+    G.remove_edges_from([(u, v, key) for key in list(G[u][v].keys())])
+    G.add_edge(u, v, resistance=R_eq)
+
+def series_merge(G, node):
+    neighbors = list(G.neighbors(node))
+    u, v = neighbors[0], neighbors[1]
+    R1 = list(G[u][node].values())[0]['resistance']
+    R2 = list(G[v][node].values())[0]['resistance']
+    R_eq = R1 + R2
+    G.remove_node(node)
+    G.add_edge(u, v, resistance=R_eq)
+
+def simplify_circuit(G, source, target):
+    changed = True
+    while changed:
+        changed = False
+        for node in list(G.nodes):
+            if node not in (source, target) and G.degree[node] == 2:
+                series_merge(G, node)
+                changed = True
+                break
+        for u, v in list(G.edges()):
+            if G.number_of_edges(u, v) &gt; 1:
+                parallel_merge(G, u, v)
+                changed = True
+                break
+    return G[source][target]['resistance']
+
+# Example usage
+G = nx.MultiGraph()
+G.add_edge('A', 'B', resistance=2)
+G.add_edge('B', 'C', resistance=3)
+G.add_edge('C', 'D', resistance=4)
+G.add_edge('A', 'D', resistance=6)  # Parallel with path A-B-C-D
+
+result = simplify_circuit(G, 'A', 'D')
+print(f"Equivalent Resistance between A and D: {result} ohms")
+</code></pre>
+<hr/>
+<h2 id="5-example-circuit">5. Example Circuit</h2>
+<ol>
+<li><strong>Series</strong>: A–B–C with resistors 2Ω, 3Ω
+   $$ R_{\text{eq}} = 2 + 3 = 5\ \Omega $$</li>
+<li><strong>Parallel</strong>: Two 6Ω resistors
+   $$ R_{\text{eq}} = \left(\frac{1}{6} + \frac{1}{6}\right)^{-1} = 3\ \Omega $$</li>
+</ol>
+<hr/>
+<h2 id="6-efficiency-improvements">6. Efficiency &amp; Improvements</h2>
+<ul>
+<li>Current implementation uses <strong>repeated iteration</strong>, which can be optimized.</li>
+<li><strong>DFS</strong> or <strong>Union-Find</strong> structures can speed up recognition of connected components and cycles.</li>
+<li>Can extend to support <strong>voltage source modeling</strong>, <strong>current flow</strong>, and <strong>nonlinear elements</strong>.</li>
+</ul>
+<hr/>
+<h2 id="7-extensions">7. Extensions</h2>
+<ul>
+<li>Add <strong>visualization</strong> using <code>matplotlib</code> and <code>networkx.draw()</code>.</li>
+<li>Export to SPICE-compatible netlists.</li>
+<li>Integrate with Falstad or simulation environments.</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
