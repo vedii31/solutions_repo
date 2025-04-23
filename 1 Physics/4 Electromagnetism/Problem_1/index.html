@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Lorentz Force Simulation - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Lorentz Force Simulation";
         var mkdocs_page_input_path = "1 Physics/4 Electromagnetism/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -70,8 +70,20 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">4 Electromagnetism</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Lorentz Force Simulation</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#1-motivation">1. Motivation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-applications-of-the-lorentz-force">2. Applications of the Lorentz Force</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-simulation-overview">3. Simulation Overview</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-python-code">4. Python Code</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#5-observations">5. Observations</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#6-extensions">6. Extensions</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -111,7 +123,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">4 Electromagnetism</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Lorentz Force Simulation</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,7 +131,94 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="lorentz-force-simulation">Lorentz Force Simulation</h1>
+<h2 id="1-motivation">1. Motivation</h2>
+<p>The Lorentz force governs the motion of charged particles under electric and magnetic fields:</p>
+<div class="arithmatex">\[
+\mathbf{F} = q\mathbf{E} + q\mathbf{v} \times \mathbf{B}
+\]</div>
+<p>It plays a crucial role in:
+- Particle accelerators
+- Plasma confinement systems (e.g., Tokamaks)
+- Mass spectrometers
+- Cosmic ray dynamics</p>
+<h2 id="2-applications-of-the-lorentz-force">2. Applications of the Lorentz Force</h2>
+<ul>
+<li><strong>Particle Accelerators</strong>: Use magnetic fields to bend charged particles into circular paths.</li>
+<li><strong>Mass Spectrometry</strong>: Employs both electric and magnetic fields to separate ions by mass-to-charge ratio.</li>
+<li><strong>Plasma Confinement</strong>: Magnetic fields trap hot plasma to maintain fusion conditions.</li>
+<li><strong>Auroras and Cosmic Rays</strong>: Natural examples of charged particles interacting with Earth's magnetic field.</li>
+</ul>
+<h2 id="3-simulation-overview">3. Simulation Overview</h2>
+<p>We simulate the motion of a charged particle using numerical integration. We explore:
+- Uniform magnetic field
+- Combined electric and magnetic fields
+- Crossed fields (orthogonal <span class="arithmatex">\(\mathbf{E}\)</span> and <span class="arithmatex">\(\mathbf{B}\)</span>)</p>
+<h2 id="4-python-code">4. Python Code</h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+q = 1.0  # charge (C)
+m = 1.0  # mass (kg)
+B = np.array([0, 0, 1.0])  # uniform magnetic field (T)
+E = np.array([0.0, 0.0, 0.0])  # electric field (V/m)
+
+# Initial state
+r0 = np.array([0.0, 0.0, 0.0])  # position (m)
+v0 = np.array([1.0, 1.0, 0.0])  # velocity (m/s)
+
+# Time parameters
+dt = 0.01
+T = 10
+steps = int(T / dt)
+
+# Arrays to store data
+positions = np.zeros((steps, 3))
+velocities = np.zeros((steps, 3))
+positions[0] = r0
+velocities[0] = v0
+
+# Euler integration
+for i in range(steps - 1):
+    v = velocities[i]
+    F = q * (E + np.cross(v, B))
+    a = F / m
+    velocities[i+1] = v + a * dt
+    positions[i+1] = positions[i] + velocities[i+1] * dt
+
+# Plot trajectory
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(positions[:, 0], positions[:, 1], positions[:, 2])
+ax.set_title("Particle Trajectory in a Uniform Magnetic Field")
+ax.set_xlabel("x (m)")
+ax.set_ylabel("y (m)")
+ax.set_zlabel("z (m)")
+plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image.png"/></p>
+<h2 id="5-observations">5. Observations</h2>
+<ul>
+<li>In a <strong>uniform magnetic field</strong>, the particle follows a <strong>circular</strong> or <strong>helical</strong> path depending on the initial velocity.</li>
+<li>The radius of the circular motion (Larmor radius) is:</li>
+</ul>
+<div class="arithmatex">\[
+r_L = \frac{mv_{\perp}}{qB}
+\]</div>
+<ul>
+<li>With an electric field present, <strong>drift motion</strong> occurs:</li>
+</ul>
+<div class="arithmatex">\[
+\mathbf{v}_d = \frac{\mathbf{E} \times \mathbf{B}}{B^2}
+\]</div>
+<h2 id="6-extensions">6. Extensions</h2>
+<ul>
+<li>Introduce <strong>non-uniform fields</strong>: <span class="arithmatex">\(\mathbf{B}(x, y, z)\)</span> and/or <span class="arithmatex">\(\mathbf{E}(x, y, z)\)</span>.</li>
+<li>Use <strong>Runge-Kutta methods</strong> for improved accuracy.</li>
+<li>Add <strong>relativistic corrections</strong> for high-speed particles.</li>
+<li>Simulate <strong>multiple particles</strong> for beam dynamics or collective effects.</li>
+</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
