@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 1 - Physics and Mathematics</title>
+<title>Central Limit Theorem (CLT): A Comprehensive Exploration Through Simulation - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 1";
+        var mkdocs_page_name = "Central Limit Theorem (CLT): A Comprehensive Exploration Through Simulation";
         var mkdocs_page_input_path = "1 Physics/6 Statistics/Problem_1.md";
         var mkdocs_page_url = null;
       </script>
@@ -82,8 +82,32 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current">6 Statistics</a>
 <ul class="current">
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 1</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Central Limit Theorem (CLT): A Comprehensive Exploration Through Simulation</a>
 <ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#motivation">Motivation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#theoretical-background">Theoretical Background</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#formal-statement">Formal Statement</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#key-concepts">📏 Key Concepts</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-population-distributions">Step 1: Population Distributions</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-sampling-and-visualization">Step 2: Sampling and Visualization</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-parameter-exploration">Step 3: Parameter Exploration</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#effect-of-sample-size">Effect of Sample Size</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#effect-of-population-distribution">Effect of Population Distribution</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#python-code-for-simulation">Python Code for Simulation</a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Problem_2/">Problem 2</a>
@@ -111,7 +135,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">6 Statistics</li>
-<li class="breadcrumb-item active">Problem 1</li>
+<li class="breadcrumb-item active">Central Limit Theorem (CLT): A Comprehensive Exploration Through Simulation</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -119,7 +143,113 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="problem-1">Problem 1</h1>
+<h1 id="central-limit-theorem-clt-a-comprehensive-exploration-through-simulation">Central Limit Theorem (CLT): A Comprehensive Exploration Through Simulation</h1>
+<h2 id="motivation">Motivation</h2>
+<p>The <strong>Central Limit Theorem (CLT)</strong> is one of the most fundamental results in probability theory and statistics. It states that:</p>
+<blockquote>
+<p><em>Given a population with any distribution having a finite mean <span class="arithmatex">\(\mu\)</span> and finite variance <span class="arithmatex">\(\sigma^2\)</span>, the distribution of the sample means approaches a normal distribution as the sample size <span class="arithmatex">\(n\)</span> increases.</em></p>
+</blockquote>
+<p>This theorem is the theoretical justification for using <strong>normal distributions</strong> in a wide variety of real-world statistical applications — even when the underlying data are not normally distributed.</p>
+<hr/>
+<h2 id="theoretical-background">Theoretical Background</h2>
+<h3 id="formal-statement">Formal Statement</h3>
+<p>Let <span class="arithmatex">\(X_1, X_2, ..., X_n\)</span> be a sequence of <strong>i.i.d. random variables</strong> with mean <span class="arithmatex">\(\mu\)</span> and variance <span class="arithmatex">\(\sigma^2\)</span>. Define the sample mean:</p>
+<div class="arithmatex">\[
+\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i
+\]</div>
+<p>Then, as <span class="arithmatex">\(n \to \infty\)</span>,</p>
+<div class="arithmatex">\[
+\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1)
+\]</div>
+<p>That is, the standardized sample mean converges in distribution to a standard normal distribution.</p>
+<h3 id="key-concepts">📏 Key Concepts</h3>
+<ul>
+<li><strong>Convergence in Distribution</strong>: The distribution of <span class="arithmatex">\(\bar{X}_n\)</span> gets closer to a normal distribution as <span class="arithmatex">\(n\)</span> increases.</li>
+<li><strong>Sampling Distribution</strong>: The probability distribution of a sample statistic (like the mean) taken from many samples.</li>
+<li><strong>Standard Error</strong>: The standard deviation of the sampling distribution of the mean:<br/>
+  $$
+  \text{SE} = \frac{\sigma}{\sqrt{n}}
+  $$</li>
+</ul>
+<hr/>
+<h2 id="step-1-population-distributions">Step 1: Population Distributions</h2>
+<p>We will generate synthetic data from three different distributions:</p>
+<ol>
+<li><strong>Uniform(0,1)</strong>: All values between 0 and 1 are equally likely.</li>
+<li><strong>Exponential(λ=1)</strong>: Skewed right, models waiting times.</li>
+<li><strong>Binomial(n=10, p=0.5)</strong>: Discrete distribution modeling number of successes in trials.</li>
+</ol>
+<hr/>
+<h2 id="step-2-sampling-and-visualization">Step 2: Sampling and Visualization</h2>
+<p>For each distribution:</p>
+<ul>
+<li>Generate a large population (100,000 values)</li>
+<li>Sample from the population using sizes <span class="arithmatex">\(n = 5, 10, 30, 50\)</span></li>
+<li>Repeat 10,000 times for each sample size</li>
+<li>Plot histograms of sample means</li>
+</ul>
+<p>We will observe how the shape of the sampling distribution <strong>changes with sample size</strong>.</p>
+<hr/>
+<h2 id="step-3-parameter-exploration">Step 3: Parameter Exploration</h2>
+<h3 id="effect-of-sample-size">Effect of Sample Size</h3>
+<ul>
+<li>As <span class="arithmatex">\(n\)</span> increases:</li>
+<li>The sampling distribution becomes more <strong>symmetric and bell-shaped</strong></li>
+<li>The variance of sample means decreases:
+    $$
+    \text{Var}(\bar{X}_n) = \frac{\sigma^2}{n}
+    $$</li>
+</ul>
+<h3 id="effect-of-population-distribution">Effect of Population Distribution</h3>
+<ul>
+<li>Populations with <strong>higher skewness</strong> (e.g., exponential) require <strong>larger sample sizes</strong> to approximate normality.</li>
+<li>Discrete or multimodal populations may also take longer to converge.</li>
+</ul>
+<hr/>
+<h2 id="python-code-for-simulation">Python Code for Simulation</h2>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set plotting style
+sns.set(style="whitegrid")
+
+# Define population distributions
+distributions = {
+    "Uniform(0,1)": lambda size: np.random.uniform(0, 1, size),
+    "Exponential(λ=1)": lambda size: np.random.exponential(1, size),
+    "Binomial(n=10, p=0.5)": lambda size: np.random.binomial(10, 0.5, size)
+}
+
+sample_sizes = [5, 10, 30, 50]
+num_samples = 10000
+population_size = 100000
+
+for dist_name, generator in distributions.items():
+    print(f"\nSampling from: {dist_name}")
+    population = generator(population_size)
+
+    fig, axes = plt.subplots(1, len(sample_sizes), figsize=(20, 4), sharey=True)
+    fig.suptitle(f"Sampling Distribution of Sample Means\n{dist_name}", fontsize=16)
+
+    for i, n in enumerate(sample_sizes):
+        means = [
+            np.mean(np.random.choice(population, size=n, replace=False))
+            for _ in range(num_samples)
+        ]
+
+        sns.histplot(means, bins=40, kde=True, ax=axes[i], color='skyblue')
+        axes[i].set_title(f"Sample Size n = {n}")
+        axes[i].set_xlabel("Sample Mean")
+        if i == 0:
+            axes[i].set_ylabel("Frequency")
+
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.show()
+</code></pre>
+<p><img alt="alt text" src="../image.png"/>
+<img alt="alt text" src="../image-1.png"/>
+<img alt="alt text" src="../image-3.png"/></p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
