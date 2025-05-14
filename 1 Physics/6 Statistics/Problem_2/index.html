@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link href="../../../img/favicon.ico" rel="shortcut icon"/>
-<title>Problem 2 - Physics and Mathematics</title>
+<title>Estimating \(\pi\) Using Monte Carlo Methods - Physics and Mathematics</title>
 <link href="../../../css/theme.css" rel="stylesheet"/>
 <link href="../../../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Problem 2";
+        var mkdocs_page_name = "Estimating \\(\\pi\\) Using Monte Carlo Methods";
         var mkdocs_page_input_path = "1 Physics/6 Statistics/Problem_2.md";
         var mkdocs_page_url = null;
       </script>
@@ -84,7 +84,35 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Problem_1/">Central Limit Theorem (CLT): A Comprehensive Exploration Through Simulation</a>
 </li>
-<li class="toctree-l2 current"><a class="reference internal current" href="#">Problem 2</a>
+<li class="toctree-l2 current"><a class="reference internal current" href="#">Estimating \(\pi\) Using Monte Carlo Methods</a>
+<ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="#part-1-circle-based-monte-carlo-simulation">Part 1: Circle-Based Monte Carlo Simulation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-theoretical-foundation">1. Theoretical Foundation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-python-simulation-circle-method">2. Python Simulation (Circle Method)</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_1"></a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#part-2-buffons-needle-simulation">Part 2: Buffon's Needle Simulation</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#1-theoretical-foundation_1">1. Theoretical Foundation</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#2-python-simulation-buffons-needle">2. Python Simulation (Buffon's Needle)</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#_2"></a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#part-3-convergence-and-analysis">Part 3: Convergence and Analysis</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary-comparison-table">Summary Comparison Table</a>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -109,7 +137,7 @@
 <li><a aria-label="Docs" class="icon icon-home" href="../../.."></a></li>
 <li class="breadcrumb-item">1 Physics</li>
 <li class="breadcrumb-item">6 Statistics</li>
-<li class="breadcrumb-item active">Problem 2</li>
+<li class="breadcrumb-item active">Estimating \(\pi\) Using Monte Carlo Methods</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -117,6 +145,138 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
+<h1 id="estimating-pi-using-monte-carlo-methods">Estimating <span class="arithmatex">\(\pi\)</span> Using Monte Carlo Methods</h1>
+<h2 id="part-1-circle-based-monte-carlo-simulation">Part 1: Circle-Based Monte Carlo Simulation</h2>
+<h3 id="1-theoretical-foundation">1. Theoretical Foundation</h3>
+<p>The idea is based on comparing the area of a unit circle (radius = 1) with the area of a square that bounds it.</p>
+<ul>
+<li>Area of the unit circle: <span class="arithmatex">\(A_{\text{circle}} = \pi r^2 = \pi\)</span></li>
+<li>Area of the square: <span class="arithmatex">\(A_{\text{square}} = (2r)^2 = 4\)</span></li>
+</ul>
+<p>Random points are uniformly distributed in the square. The ratio of points that fall <strong>inside the circle</strong> to the total number of points approximates the ratio of the areas:</p>
+<div class="arithmatex">\[
+\frac{\text{points inside circle}}{\text{total points}} \approx \frac{\pi}{4}
+\]</div>
+<p>Thus, we can estimate <span class="arithmatex">\(\pi\)</span> using:</p>
+<div class="arithmatex">\[
+\pi \approx 4 \cdot \frac{\text{points inside circle}}{\text{total points}}
+\]</div>
+<h3 id="2-python-simulation-circle-method">2. Python Simulation (Circle Method)</h3>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+def estimate_pi_circle(n_points):
+    x = np.random.uniform(-1, 1, n_points)
+    y = np.random.uniform(-1, 1, n_points)
+    inside_circle = x**2 + y**2 &lt;= 1
+    pi_estimate = 4 * np.sum(inside_circle) / n_points
+
+    # Visualization
+    plt.figure(figsize=(6,6))
+    plt.scatter(x[inside_circle], y[inside_circle], s=1, color='blue', label='Inside Circle')
+    plt.scatter(x[~inside_circle], y[~inside_circle], s=1, color='red', label='Outside Circle')
+    circle = plt.Circle((0, 0), 1, fill=False, color='black', linestyle='--')
+    plt.gca().add_artist(circle)
+    plt.title(f"Monte Carlo Pi Estimate: {pi_estimate:.5f}")
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.axis('equal')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+    return pi_estimate
+
+# Example usage
+estimate_pi_circle(10000)
+</code></pre>
+<h2 id="_1"><img alt="alt text" src="../image-4.png"/></h2>
+<h2 id="part-2-buffons-needle-simulation">Part 2: Buffon's Needle Simulation</h2>
+<h3 id="1-theoretical-foundation_1">1. Theoretical Foundation</h3>
+<p>Buffon's Needle problem involves dropping a needle of length <span class="arithmatex">\(L\)</span> onto a floor with parallel lines spaced distance <span class="arithmatex">\(D\)</span> apart. If <span class="arithmatex">\(L \leq D\)</span>, the probability <span class="arithmatex">\(P\)</span> that the needle crosses a line is:</p>
+<div class="arithmatex">\[
+P = \frac{2L}{\pi D}
+\]</div>
+<p>Rearranging gives an estimate for <span class="arithmatex">\(\pi\)</span>:</p>
+<div class="arithmatex">\[
+\pi \approx \frac{2L \cdot N}{D \cdot C}
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(N\)</span> = total needle drops
+- <span class="arithmatex">\(C\)</span> = number of crossings</p>
+<h3 id="2-python-simulation-buffons-needle">2. Python Simulation (Buffon's Needle)</h3>
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+def estimate_pi_buffon(n_drops, needle_length=1.0, line_distance=2.0):
+    assert needle_length &lt;= line_distance, "Needle length must be &lt;= line spacing"
+
+    # Randomly generate needle centers and angles
+    centers = np.random.uniform(0, line_distance / 2, n_drops)
+    angles = np.random.uniform(0, np.pi / 2, n_drops)
+    crosses = centers &lt;= (needle_length / 2) * np.sin(angles)
+
+    # Estimate pi
+    n_crosses = np.sum(crosses)
+    if n_crosses == 0:
+        return None  # Avoid division by zero
+    pi_estimate = (2 * needle_length * n_drops) / (line_distance * n_crosses)
+
+    # Visualization
+    plt.figure(figsize=(6,6))
+    for i in range(100):
+        x0 = np.random.uniform(0, 10)
+        y0 = np.random.uniform(0, 10)
+        theta = np.random.uniform(0, 2 * np.pi)
+        x1 = x0 + (needle_length / 2) * np.cos(theta)
+        x2 = x0 - (needle_length / 2) * np.cos(theta)
+        y1 = y0 + (needle_length / 2) * np.sin(theta)
+        y2 = y0 - (needle_length / 2) * np.sin(theta)
+        plt.plot([x1, x2], [y1, y2], 'r-' if abs(y1 - y2) &gt; line_distance else 'b-')
+    for i in range(0, 11):
+        plt.axhline(i, color='black', linestyle='--', linewidth=0.5)
+    plt.title(f"Buffon's Needle Pi Estimate: {pi_estimate:.5f}")
+    plt.xlim(0, 10)
+    plt.ylim(0, 10)
+    plt.gca().set_aspect('equal')
+    plt.show()
+
+    return pi_estimate
+
+# Example usage
+estimate_pi_buffon(10000)
+</code></pre>
+<h2 id="_2"><img alt="alt text" src="../image-5.png"/></h2>
+<h2 id="part-3-convergence-and-analysis">Part 3: Convergence and Analysis</h2>
+<p>As the number of iterations (<span class="arithmatex">\(N\)</span>) increases, the estimates for <span class="arithmatex">\(\pi\)</span> from both methods converge toward the true value. Circle-based estimation usually converges faster and is simpler to implement.</p>
+<h3 id="summary-comparison-table">Summary Comparison Table</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Formula Used</th>
+<th>Convergence Rate</th>
+<th>Visualization Simplicity</th>
+<th>Accuracy (for large <span class="arithmatex">\(N\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Circle Method</td>
+<td><span class="arithmatex">\(\pi \approx 4 \cdot \frac{\text{inside}}{\text{total}}\)</span></td>
+<td>Fast</td>
+<td>High</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Buffon's Needle</td>
+<td><span class="arithmatex">\(\pi \approx \frac{2L \cdot N}{D \cdot C}\)</span></td>
+<td>Slow</td>
+<td>Moderate</td>
+<td>Moderate</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
